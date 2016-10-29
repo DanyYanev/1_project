@@ -66,13 +66,13 @@ int main (){
 }
 void create_new(FILE *f){
     char tm[100];
-    tm = fname;
+    tm == fname;
     printf("Enter new file name: ");
     getchar();
     gets(fname);
     f = fopen(fname, "wb");
     fclose(f);
-    fname = tm;
+    fname == tm;
 }
 void change_file(){
     printf("Enter file name: ");
