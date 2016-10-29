@@ -1,4 +1,7 @@
+#include<iostream>
 #include<stdio.h>
+#include<iomanip>
+using namespace std;
 
 typedef struct{
     int num;
@@ -28,14 +31,14 @@ int main (){
     char input;
     opt = 1;
     printf("Enter file name: ");
-    getchar();
-    gets(fname);
+    //getchar();
+    cin >>fname;
     while(1){
         system("cls");
         Check(opt);
         input = 0;
         while(input != 13){
-            input = getch();
+            cin >> input;// = getch();
             system("cls");
             if(input == 72 && opt != 1){
                 opt--;
@@ -76,14 +79,14 @@ void create_new(FILE *f){
 }
 void change_file(){
     printf("Enter file name: ");
-    getchar();
-    gets(fname);
+    //getchar();
+    cin<<fname;
 }
 void statistic_opt(int a){
     if(a == 1) cout << "> ";
-    count <<"1. Statistics for scholarship." << endl;
+    cout <<"1. Statistics for scholarship." << endl;
     if(a == 2) cout <<"> ";
-    count << "2. Statistics for who doesn't pass." << endl;
+    cout << "2. Statistics for who doesn't pass." << endl;
 }
 void statistic_types(FILE *f){
     int opt = 1, input = 0;
@@ -93,7 +96,7 @@ void statistic_types(FILE *f){
         statistic_opt(opt);
         input = 0;
         while(input != 13){
-            input = getch();
+            cin >> input; // = getch();
             system("cls");
             if(input == 72 && opt != 1){
                 opt--;
@@ -166,21 +169,22 @@ void addToFile(FILE *f, int opt){
     if(f){
         for (i=0; 1 ; i++){
             sum=0;
-            cout >>"Enter number: ";
-            cin << s.num;
+            cout <<"Enter number: ";
+            cin >> s.num;
             if(s.num == 0){
                 break;
             }
             getchar();
-            cout >>"Enter name: ";
-            gets(s.name);
+            cout << "Enter name: ";
+            cin >>s.name;
             s.avr = 0;
-            printf("Enter mark 1, for student number %d: ", s.num);
-            scanf("%d", &s.marks[0]);
+            cout <<"Enter mark 1, for student number"<< s.num<<": ";
+            cin >> s.marks[0];
             s.avr += s.marks[0];
             for (k=1; s.marks[k - 1] != 0 ; k++){
-                printf("Enter mark %d, for student number %d: ", k+1, s.num);
-                scanf("%d", &s.marks[k]);
+                cout <<"Enter mark"<< k+1 <<" for student number" <<s.num
+                <<": ";
+                cin >> s.marks[k];
                 s.avr += s.marks[k];
             }
             s.avr= s.avr/(k - 1);
@@ -210,8 +214,8 @@ void deleteFromFile(FILE *f, FILE *tmp){
     tmp = fopen("temp.tmp", "wb");
     f = fopen(fname, "rb");
     if(f && tmp){
-        printf("\nWhich number should be deleted: ");
-        scanf("%d", &dn);
+        cout << endl << "Which number should be deleted: ";
+        cin >> dn;
         while(!feof(f)){
             if(fread(&s, sizeof(s), 1, f)){
                 if(s.num != dn) fwrite(&s, sizeof(s), 1, tmp);;
@@ -253,20 +257,20 @@ void editFile(FILE *f){
     int en, k;
     student s, sn;
     f = fopen(fname, "rb+");
-    printf("Which number should be edited: ");
-    scanf("%d", &en);
-    printf("Enter new number: ");
-    scanf("%d", &sn.num);
-    getchar();
-    printf("Enter new name: ");
-    gets(sn.name);
+    cout << "Which number should be edited: ";
+    cin >>en;
+    cout <<"Enter new number: ";
+    cin >> sn.num;
+    cout <<"Enter new name: ";
+    cin >> sn.name;
     sn.avr = 0;
-    printf("Enter mark 1, for student number %d: ", sn.num);
-    scanf("%d", &sn.marks[0]);
+    cout <<"Enter mark 1, for student number" << sn.num <<": ";
+    cin >> sn.marks[0];
     sn.avr += sn.marks[0];
     for (k=1; sn.marks[k - 1] != 0 ; k++){
-        printf("Enter mark %d, for student number %d: ", k+1, sn.num);
-        scanf("%d", &sn.marks[k]);
+        cout <<"Enter mark"<< k+1 <<" for student number" <<sn.num
+        <<": ";
+        cin >> sn.marks[k];
         sn.avr += sn.marks[k];
     }
     sn.avr= sn.avr/(k - 1);
@@ -319,20 +323,20 @@ void sort_data(FILE *f){
     printf("Data sorted successfully!");
 }
 void Check(int a){
-    if(a == 1) printf("> ");
-    printf("1. Add data to file.\n");
-    if(a == 2) printf("> ");
-    printf("2. Change the used file.\n");
-    if(a == 3) printf("> ");
-    printf("3. Delete data from file.\n");
-    if(a == 4) printf("> ");
-    printf("4. View data from file.\n");
-    if(a == 5) printf("> ");
-    printf("5. Edit data from a file.\n");
-    if(a == 6) printf("> ");
-    printf("6. Sort data from a file.\n");
-    if(a == 7) printf("> ");
-    printf("7. Get file statistics.\n");
-    if(a == 8) printf("> ");
-    printf("8. Exit.\n");
+    if(a == 1) cout <<"> ";
+    cout <<"1. Add data to file." << endl;
+    if(a == 2) cout <<"> ";
+    cout <<"2. Change the used file." << endl;
+    if(a == 3) cout <<"> ";
+    cout <<"3. Delete data from file." << endl;
+    if(a == 4) cout <<"> ";
+    cout <<"4. View data from file." << endl;
+    if(a == 5) cout <<"> ";
+    cout <<"5. Edit data from a file." << endl;
+    if(a == 6) cout <<"> ";
+    cout <<"6. Sort data from a file." << endl;
+    if(a == 7) cout <<"> ";
+    cout <<"7. Get file statistics." << endl;
+    if(a == 8) cout <<"> ";
+    cout <<"8. Exit." << endl;
 }
