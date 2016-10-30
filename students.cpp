@@ -67,7 +67,7 @@ int main (){
             case 8: cout<<"Bye Bye!"; break;
         }
         if(opt == 8) break;
-        if(opt != 2 && opt != 3)getchar();
+        if(opt != 2)getchar();
     }
 
 }
