@@ -68,19 +68,15 @@ int main (){
 
 }
 void create_new(FILE *f){
-    char tm[100];
-    tm = fname;
     printf("Enter new file name: ");
-    getchar();
-    gets(fname);
+    cin >> fname;
     f = fopen(fname, "wb");
     fclose(f);
-    fname = tm;
 }
 void change_file(){
     printf("Enter file name: ");
     //getchar();
-    cin<<fname;
+    cin>>fname;
 }
 void statistic_opt(int a){
     if(a == 1) cout << "> ";
