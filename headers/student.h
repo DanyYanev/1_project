@@ -1,10 +1,12 @@
 #ifndef STUDENT_H
 #define STUDENT_H
+#include<iostream>
+#include <sstream>
 
 class Employee{
     protected:
-        string name;
-        double pay, Opay, salary, Oh, coef, workddays, workdays;
+        std::string name;
+        double pay, Opay, salary, Oh, Ocoef, workddays, workdays;
     public:
         Employee() {
             name = "";
@@ -12,18 +14,18 @@ class Employee{
             Opay = 0;
             salary = 0;
             Oh = 0;
-            coef = 1.75;
+            Ocoef = 1.75;
             workdays = 0;
             workddays = 0;
         }
-        Employee (string empName){
+        Employee (std::string empName){
             name = empName;
         }
         ~Employee(){}
-        string getName() {
+        std::string getName() {
             return name;
         }
-        void setName(string empName){
+        void setName(std::string empName){
             name = empName;
         }
         double getSalary(){
