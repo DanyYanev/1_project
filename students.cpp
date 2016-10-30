@@ -14,20 +14,21 @@ typedef struct{
     float avr;
 }student;
 
-void addToFile(FILE *f, int opt);
-void deleteFromFile(FILE *f, FILE *tmp);
-void readFromFile(FILE *f);
+void addToFile(FILE *f, int opt, char *fname);
+void deleteFromFile(FILE *f, FILE *tmp, char *fname);
+void readFromFile(FILE *f, char *fname);
 void Check(int a);
-void statistic_types(FILE *f);
+void statistic_types(FILE *f, char *fname);
 void statistic_opt(int a);
-void get_scholarship(FILE *f);
-void does_not_pass(FILE *f);
-void sort_data(FILE *f);
-void editFile(FILE *f);
-void change_file();
+void get_scholarship(FILE *f, char *fname);
+void does_not_pass(FILE *f, char *fname);
+void sort_data(FILE *f, char *fname);
+void editFile(FILE *f, char *fname);
+void change_file(char *fname);
 
-char fname[100];
+//char fname[100];
 int main (){
+    char fname[100];
     int n, m, i, k, j, dn, opt;
     float sum;
     FILE *f;
@@ -57,13 +58,13 @@ int main (){
         }
         system("cls");
         switch(opt){
-            case 1: addToFile(f, opt); break;
-            case 2: change_file(); break;
-            case 3: deleteFromFile(f, tmp); break;
-            case 4: readFromFile(f); break;
-            case 5: editFile(f); break;
-            case 6: sort_data(f); break;
-            case 7: statistic_types(f); break;
+            case 1: addToFile(f, opt, fname); break;
+            case 2: change_file(fname); break;
+            case 3: deleteFromFile(f, tmp, fname); break;
+            case 4: readFromFile(f, fname); break;
+            case 5: editFile(f, fname); break;
+            case 6: sort_data(f, fname); break;
+            case 7: statistic_types(f, fname); break;
             case 8: cout<<"Bye Bye!"; break;
         }
         if(opt == 8) break;
@@ -71,7 +72,7 @@ int main (){
     }
 
 }
-void create_new(FILE *f){
+void create_new(FILE *f, char *fname){
     char tm[100];
     strcpy(tm, fname);
     cout<<"Enter new file name: ";
@@ -80,7 +81,7 @@ void create_new(FILE *f){
     fclose(f);
     strcpy(fname, tm);
 }
-void change_file(){
+void change_file(char *fname){
     cout<<"Enter file name: ";
     //getchar();
     cin>>fname;
@@ -91,7 +92,7 @@ void statistic_opt(int a){
     if(a == 2) cout <<"> ";
     cout << "2. Statistics for who doesn't pass." << endl;
 }
-void statistic_types(FILE *f){
+void statistic_types(FILE *f, char *fname){
     int opt = 1, input = 0;
     statistic_opt(opt);
     while(1){
@@ -114,13 +115,13 @@ void statistic_types(FILE *f){
         }
         system("cls");
         switch(opt){
-            case 1: get_scholarship(f); break;
-            case 2: does_not_pass(f); break;
+            case 1: get_scholarship(f, fname); break;
+            case 2: does_not_pass(f, fname); break;
         }
         break;
     }
 }
-void get_scholarship(FILE *f){
+void get_scholarship(FILE *f, char *fname){
     student s;
     int k;
     f = fopen(fname, "rb");
@@ -141,7 +142,7 @@ void get_scholarship(FILE *f){
         fclose(f);
     }
 }
-void does_not_pass(FILE *f){
+void does_not_pass(FILE *f, char *fname){
     student s;
     int k, i;
     f = fopen(fname, "rb");
@@ -165,7 +166,7 @@ void does_not_pass(FILE *f){
         fclose(f);
     }
 }
-void addToFile(FILE *f, int opt){
+void addToFile(FILE *f, int opt, char *fname){
     if(opt == 1) f = fopen(fname, "ab");
     student s;
     int i, k = 0, sum;
@@ -197,7 +198,7 @@ void addToFile(FILE *f, int opt){
     }
 }
 
-void deleteFromFile(FILE *f, FILE *tmp){
+void deleteFromFile(FILE *f, FILE *tmp, char *fname){
     student s;
     int k, dn;
     f = fopen(fname, "rb");
@@ -238,7 +239,7 @@ void deleteFromFile(FILE *f, FILE *tmp){
         fclose(tmp);
     }
 }
-void readFromFile(FILE *f){
+void readFromFile(FILE *f, char *fname){
     student s;
     int k;
     f = fopen(fname, "rb");
@@ -256,7 +257,7 @@ void readFromFile(FILE *f){
         fclose(f);
     }
 }
-void editFile(FILE *f){
+void editFile(FILE *f, char *fname){
     int en, k;
     student s, sn;
     f = fopen(fname, "rb+");
@@ -291,7 +292,7 @@ void editFile(FILE *f){
         fclose(f);
     }
 }
-void sort_data(FILE *f){
+void sort_data(FILE *f, char *fname){
     student studs[100], s, temp;
     int en, k, i, stud_size, flag = 1;
     f = fopen(fname, "rb");
