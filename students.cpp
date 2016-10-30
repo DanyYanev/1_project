@@ -34,7 +34,7 @@ int main (){
     FILE *tmp;
     char input;
     opt = 1;
-    printf("Enter file name: ");
+    cout<<"Enter file name: ";
     //getchar();
     cin >>fname;
     while(1){
@@ -64,24 +64,24 @@ int main (){
             case 5: editFile(f); break;
             case 6: sort_data(f); break;
             case 7: statistic_types(f); break;
-            case 8: printf("Bye Bye!"); break;
+            case 8: cout<<"Bye Bye!"; break;
         }
         if(opt == 8) break;
-        if(opt != 2)getchar();
+        if(opt != 2 && opt != 3)getchar();
     }
 
 }
 void create_new(FILE *f){
     char tm[100];
     strcpy(tm, fname);
-    printf("Enter new file name: ");
+    cout<<"Enter new file name: ";
     cin >> fname;
     f = fopen(fname, "wb");
     fclose(f);
     strcpy(fname, tm);
 }
 void change_file(){
-    printf("Enter file name: ");
+    cout<<"Enter file name: ";
     //getchar();
     cin>>fname;
 }
@@ -129,7 +129,7 @@ void get_scholarship(FILE *f){
             if(fread(&s, sizeof(s), 1, f)){
                 if(s.avr >= 5.5){
                     cout << setw(3)<< s.num << setw(20) << s.name
-                      << setw(8) << s.avr << " ";
+                      << setw(8) << setprecision(3) << s.avr << " ";
                     for(k=0; s.marks[k + 1] != 0; k++){
                         cout << s.marks[k]<< ", ";
                     }
@@ -151,7 +151,7 @@ void does_not_pass(FILE *f){
                 for(i = 0 ; s.marks[i] >= 2 && s.marks[i] <= 6 ; i++){
                     if(s.marks[i] == 2){
                       cout << setw(3)<< s.num << setw(20) << s.name
-                        << setw(8) << s.avr << " ";
+                        << setw(8) << setprecision(3) << s.avr << " ";
                         for(k=0; s.marks[k + 1] != 0; k++){
                             cout << s.marks[k]<< ", ";
                         }
@@ -181,11 +181,11 @@ void addToFile(FILE *f, int opt){
             cout << "Enter name: ";
             cin >>s.name;
             s.avr = 0;
-            cout <<"Enter mark 1, for student number "<< s.num<<": ";
+            cout <<"Enter mark 1 for student number "<< s.num<<": ";
             cin >> s.marks[0];
             s.avr += s.marks[0];
             for (k=1; s.marks[k - 1] != 0 ; k++){
-                cout <<"Enter mark"<< k+1 <<" for student number " <<s.num
+                cout <<"Enter mark "<< k+1 <<" for student number " <<s.num
                 <<": ";
                 cin >> s.marks[k];
                 s.avr += s.marks[k];
@@ -205,7 +205,7 @@ void deleteFromFile(FILE *f, FILE *tmp){
         while(!feof(f)){
             if(fread(&s, sizeof(s), 1, f)){
               cout << setw(3)<< s.num << setw(20) << s.name
-                << setw(8) << s.avr;
+                << setw(8)  << setprecision(3) << s.avr;
                 for(k=0; s.marks[k + 1] != 0; k++){
                     cout << s.marks[k]<< ", ";
                 }
@@ -246,7 +246,7 @@ void readFromFile(FILE *f){
         while(!feof(f)){
             if(fread(&s, sizeof(s), 1, f)){
               cout << setw(3)<< s.num << setw(20) << s.name
-                << setw(8) << s.avr << " ";
+                << setw(8) << setprecision(3) << s.avr << " ";
                 for(k=0; s.marks[k + 1] != 0; k++){
                     cout << s.marks[k]<< ", ";
                 }
@@ -323,7 +323,7 @@ void sort_data(FILE *f){
         }
         fclose(f);
     }
-    printf("Data sorted successfully!");
+    cout<<"Data sorted successfully!";
 }
 void Check(int a){
     if(a == 1) cout <<"> ";
