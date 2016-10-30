@@ -34,28 +34,16 @@ int main (){
     FILE *f;
     FILE *tmp;
     char input;
-    opt = 1;
+    opt = 0;
     cout<<"Enter file name: ";
     //getchar();
     cin >>fname;
     while(1){
+        opt=0;
         system("cls");
         Check(opt);
-        input = 0;
-        while(input != 13){
-            input = getch();
-            system("cls");
-            if(input == 72 && opt != 1){
-                opt--;
-            }else if(input == 80 && opt != 8){
-                opt++;
-            }else if(input == 80 && opt == 8){
-                opt = 1;
-            }else if(input == 72 && opt == 1){
-                opt = 8;
-            }
-            Check(opt);
-        }
+        cin>>opt;
+        getchar();
         system("cls");
         switch(opt){
             case 1: addToFile(f, opt, fname); break;
@@ -93,31 +81,19 @@ void statistic_opt(int a){
     cout << "2. Statistics for who doesn't pass." << endl;
 }
 void statistic_types(FILE *f, char *fname){
-    int opt = 1, input = 0;
+    int opt = 0, input = 0;
     statistic_opt(opt);
     while(1){
+        opt=0;
         system("cls");
         statistic_opt(opt);
-        input = 0;
-        while(input != 13){
-            input = getch();
-            system("cls");
-            if(input == 72 && opt != 1){
-                opt--;
-            }else if(input == 80 && opt != 2){
-                opt++;
-            }else if(input == 80 && opt == 2){
-                opt = 1;
-            }else if(input == 72 && opt == 2){
-                opt = 2;
-            }
-            statistic_opt(opt);
-        }
+        cin>>opt;
         system("cls");
         switch(opt){
             case 1: get_scholarship(f, fname); break;
             case 2: does_not_pass(f, fname); break;
         }
+        getchar();
         break;
     }
 }
