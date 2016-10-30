@@ -1,6 +1,10 @@
 #include<iostream>
 #include<stdio.h>
 #include<iomanip>
+#include<stdlib.h>
+#include<cstring>
+#include<conio.h>
+
 using namespace std;
 
 typedef struct{
@@ -38,7 +42,7 @@ int main (){
         Check(opt);
         input = 0;
         while(input != 13){
-            cin >> input;// = getch();
+            input = getch();
             system("cls");
             if(input == 72 && opt != 1){
                 opt--;
@@ -68,10 +72,13 @@ int main (){
 
 }
 void create_new(FILE *f){
+    char tm[100];
+    strcpy(tm, fname);
     printf("Enter new file name: ");
     cin >> fname;
     f = fopen(fname, "wb");
     fclose(f);
+    strcpy(fname, tm);
 }
 void change_file(){
     printf("Enter file name: ");
@@ -92,7 +99,7 @@ void statistic_types(FILE *f){
         statistic_opt(opt);
         input = 0;
         while(input != 13){
-            cin >> input; // = getch();
+            input = getch();
             system("cls");
             if(input == 72 && opt != 1){
                 opt--;
@@ -122,7 +129,7 @@ void get_scholarship(FILE *f){
             if(fread(&s, sizeof(s), 1, f)){
                 if(s.avr >= 5.5){
                     cout << setw(3)<< s.num << setw(20) << s.name
-                      << setw(8) << s.avr;
+                      << setw(8) << s.avr << " ";
                     for(k=0; s.marks[k + 1] != 0; k++){
                         cout << s.marks[k]<< ", ";
                     }
@@ -144,7 +151,7 @@ void does_not_pass(FILE *f){
                 for(i = 0 ; s.marks[i] >= 2 && s.marks[i] <= 6 ; i++){
                     if(s.marks[i] == 2){
                       cout << setw(3)<< s.num << setw(20) << s.name
-                        << setw(8) << s.avr;
+                        << setw(8) << s.avr << " ";
                         for(k=0; s.marks[k + 1] != 0; k++){
                             cout << s.marks[k]<< ", ";
                         }
@@ -174,11 +181,11 @@ void addToFile(FILE *f, int opt){
             cout << "Enter name: ";
             cin >>s.name;
             s.avr = 0;
-            cout <<"Enter mark 1, for student number"<< s.num<<": ";
+            cout <<"Enter mark 1, for student number "<< s.num<<": ";
             cin >> s.marks[0];
             s.avr += s.marks[0];
             for (k=1; s.marks[k - 1] != 0 ; k++){
-                cout <<"Enter mark"<< k+1 <<" for student number" <<s.num
+                cout <<"Enter mark"<< k+1 <<" for student number " <<s.num
                 <<": ";
                 cin >> s.marks[k];
                 s.avr += s.marks[k];
@@ -239,7 +246,7 @@ void readFromFile(FILE *f){
         while(!feof(f)){
             if(fread(&s, sizeof(s), 1, f)){
               cout << setw(3)<< s.num << setw(20) << s.name
-                << setw(8) << s.avr;
+                << setw(8) << s.avr << " ";
                 for(k=0; s.marks[k + 1] != 0; k++){
                     cout << s.marks[k]<< ", ";
                 }
@@ -260,11 +267,11 @@ void editFile(FILE *f){
     cout <<"Enter new name: ";
     cin >> sn.name;
     sn.avr = 0;
-    cout <<"Enter mark 1, for student number" << sn.num <<": ";
+    cout <<"Enter mark 1, for student number " << sn.num <<": ";
     cin >> sn.marks[0];
     sn.avr += sn.marks[0];
     for (k=1; sn.marks[k - 1] != 0 ; k++){
-        cout <<"Enter mark"<< k+1 <<" for student number" <<sn.num
+        cout <<"Enter mark "<< k+1 <<" for student number" <<sn.num
         <<": ";
         cin >> sn.marks[k];
         sn.avr += sn.marks[k];
