@@ -8,8 +8,8 @@ class Employee{
         std::string name;
         double pay, Opay, salary, Oh, Ocoef, workddays, workdays;
     public:
-        Employee() {
-            name = "";
+        Employee (std::string empName){
+            name = empName;
             pay = 0; //per hours
             Opay = 0;
             salary = 0;
@@ -18,18 +18,18 @@ class Employee{
             workdays = 0;
             workddays = 0;
         }
-        Employee (std::string empName){
-            name = empName;
-        }
         ~Employee(){}
         std::string getName() {
-            return name;
+          return name;
         }
         void setName(std::string empName){
-            name = empName;
+          name = empName;
         }
         double getSalary(){
-            return salary;
+          return salary;
+        }
+        double getWddays(){
+          return workddays;
         }
         void setWday(double days){
           workdays = days; //work days for the month
@@ -38,7 +38,7 @@ class Employee{
           workddays = days; //worked days
         }
         void setSalary(double MSalary){
-            salary = MSalary; //monthly salary
+          salary = MSalary; //monthly salary
         }
         double setOverHours(double oh){
           Oh = oh; //overhours
@@ -50,7 +50,7 @@ class Employee{
           return Oh*pay*Ocoef;
         }
         double getPay(){
-          return pay*workddays/8;
+          return salary/workdays/8*workddays/8;
         }
         double getWage(){
             int wage = getPay() + getOPay();
