@@ -1,16 +1,17 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 #include<iostream>
-#include <sstream>
+
+//using namespace std;
 
 class Employee{
     protected:
         std::string name;
-        double pay, Opay, salary, Oh, Ocoef, workddays, workdays;
+        double Rpay, Opay, salary, Oh, Ocoef, workddays, workdays;
     public:
-        Employee (std::string empName){
-            name = empName;
-            pay = 0; //per hours
+        Employee() {
+            name = "";
+            Rpay = 0;
             Opay = 0;
             salary = 0;
             Oh = 0;
@@ -47,21 +48,23 @@ class Employee{
           Ocoef = coef;
         }
         double getOPay(){
-          return Oh*pay*Ocoef;
+          return Opay = Oh*salary/workdays/8*Ocoef;
         }
-        double getPay(){
-          return salary/workdays/8*workddays/8;
+        double getRPay(){
+          return Rpay = salary/workdays*workddays; // works dont question
         }
         double getWage(){
-            int wage = getPay() + getOPay();
+            int wage = getRPay() + getOPay();
             return wage;
         }
-        /*string toString(){
-            stringstream stm;
-            stm << name << ": ";
+        std::string toString(){
+            std::stringstream stm;
+            stm << name << " " << salary << " " << workdays << " "
+            << workddays << " " << Oh << " " << Ocoef << " "
+            << getOPay() << " " << getRPay();
             return stm.str();
-            }
-        */
+        }
+
 
 };
 
