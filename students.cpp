@@ -13,14 +13,12 @@ int main (){
     string fname = "";
     int n, m, i, k, j, dn, opt;
     float sum;
-    FILE *f;
-    FILE *tmp;
-    char input;
+    //char input;
     opt = 0;
     cout<<"Enter file name: ";
     cin >>fname;
     ofstream ofs(fname);
-	ifstream ifs(fname);
+	   ifstream ifs(fname);
     while(1){
         opt=0;
         cout<<endl;
