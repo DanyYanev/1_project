@@ -1,12 +1,13 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 #include<iostream>
+#include<sstream>
 
-//using namespace std;
+using namespace std;
 
 class Employee{
     protected:
-        std::string name;
+        string name;
         double Rpay, Opay, salary, Oh, Ocoef, workddays, workdays;
     public:
         Employee() {
@@ -20,7 +21,7 @@ class Employee{
             workddays = 0;
         }
         ~Employee(){}
-        std::string getName() {
+        string getName() {
           return name;
         }
         void setName(std::string empName){
@@ -57,11 +58,11 @@ class Employee{
             int wage = getRPay() + getOPay();
             return wage;
         }
-        std::string toString(){
-            std::stringstream stm;
+        string toString(){
+            stringstream stm;
             stm << name << " " << salary << " " << workdays << " "
             << workddays << " " << Oh << " " << Ocoef << " "
-            << getOPay() << " " << getRPay();
+            << getOPay() << " " << getRPay() << endl;
             return stm.str();
         }
 

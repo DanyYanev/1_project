@@ -1,5 +1,7 @@
 #include<iostream>
-void change_file(char *fname){
+std::string change_file(){
+    std::string fname = "";
     std::cout<<"Enter file name: ";
     std::cin>>fname;
+    return fname;
 }

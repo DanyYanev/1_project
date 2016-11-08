@@ -1,36 +1,35 @@
 #include<iostream>
 #include<stdio.h>
+#include<fstream>
 #include"../headers/student.h"
 using namespace std;
 
-void addToFile(FILE *f, int opt, char *fname){
-    if(opt == 1) f = fopen(fname, "ab");
-    student s;
-    int i, k = 0, sum;
-    if(f){
-        for (i=0; 1 ; i++){
-            sum=0;
-            cout <<"Enter number: ";
-            cin >> s.num;
-            if(s.num == 0){
-                break;
-            }
-            getchar();
-            cout << "Enter name: ";
-            cin >>s.name;
-            s.avr = 0;
-            cout <<"Enter mark 1 for student number "<< s.num<<": ";
-            cin >> s.marks[0];
-            s.avr += s.marks[0];
-            for (k=1; s.marks[k - 1] != 0 ; k++){
-                cout <<"Enter mark "<< k+1 <<" for student number " <<s.num
-                <<": ";
-                cin >> s.marks[k];
-                s.avr += s.marks[k];
-            }
-            s.avr= s.avr/(k - 1);
-            fwrite(&s, sizeof(s), 1, f);
-        }
-        fclose(f);
+void addToFile(string fname){
+  Employee s;
+  ofstream ofs;
+  ofs.open(fname.c_str(), ios_base::app);
+  while(1){
+    cout << "Enter name: ";
+    string name = "";
+    cin >> name;
+    if(!name.compare("none")){
+        break;
     }
+    s.setName(name);
+    double salary = 0.0, Wdays = 0.0, Wddays = 0.0, Oh = 0.0, coef = 0.0;
+    cout << "Enter Salary: ";
+    cin >> salary;
+    s.setSalary(salary);
+    cout << "Enter work days for month: ";
+    cin >> Wdays;
+    s.setWday(Wdays);
+    cout << "Enter worked days: ";
+    cin >> Wddays;
+    s.setWddays(Wddays);
+    cout << "Enter overtime worked hours: ";
+    cin >> Oh;
+    s.setOverHours(Oh);
+    ofs << s.toString();
+    ofs.close();
+  }
 }
